@@ -180,7 +180,8 @@ a { color: inherit; }
 #board .sk-lb-games { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 0.72rem; color: var(--muted); }
 #board .sk-lb-game-pts { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
 #board .sk-lb-game-top { color: var(--red); }
-#board .sk-lb-roster, #board .sk-lb-sub { flex-basis: 100%; font-size: 0.72rem; color: var(--muted); }
+#board .sk-lb-roster { display: none; }
+#board .sk-lb-sub { flex-basis: 100%; font-size: 0.72rem; color: var(--muted); }
 #board .sk-lb-empty { padding: 18px; text-align: center; color: var(--muted); font-size: 0.9rem; }
 
 /* ⑤ 外へのリンク */
