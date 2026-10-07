@@ -1,0 +1,226 @@
+:root {
+  --bg: #f6f6f6;
+  --paper: #ffffff;
+  --ink: #151515;
+  --muted: #5d5d5d;
+  --red: #e40536;
+  --blue: #4965f0;
+  --yellow: #ffc110;
+  --green: #2fb85a;
+  --line: 3px solid var(--ink);
+  --shadow: 5px 5px 0 var(--ink);
+  --font-display: "Londrina Solid", "Noto Sans JP", system-ui, sans-serif;
+  --font-body: "Noto Sans JP", system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.7;
+}
+
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+.wrap {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* ① ヘッダー */
+.site-header { padding: 16px 0; border-bottom: var(--line); background: var(--paper); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand-mark { width: 44px; height: auto; flex: none; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.25; }
+.brand-name { font-family: var(--font-display); font-size: 1.9rem; letter-spacing: 0.02em; }
+.brand-sub { font-size: 0.72rem; color: var(--muted); font-weight: 700; }
+.header-side { min-width: 0; }
+
+/* ② ヒーロー */
+.hero { text-align: center; padding-top: 72px; padding-bottom: 56px; }
+.hero-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 8.4vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+}
+.hero-lead { margin: 16px 0 0; font-size: clamp(0.95rem, 3.6vw, 1.15rem); color: var(--muted); font-weight: 700; }
+.studs { display: flex; justify-content: center; gap: 10px; margin-top: 28px; }
+.studs i { width: 16px; height: 16px; border: 3px solid var(--ink); display: block; }
+.studs i:nth-child(1) { background: var(--red); }
+.studs i:nth-child(2) { background: var(--yellow); }
+.studs i:nth-child(3) { background: var(--blue); }
+.studs i:nth-child(4) { background: var(--green); }
+
+.section-title {
+  margin: 0 0 20px;
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+.section-title::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
+  background: var(--red);
+  border: 3px solid var(--ink);
+  vertical-align: -1px;
+}
+
+/* ③ ゲームカード（横スクロール） */
+.games { padding-bottom: 64px; }
+.card-row {
+  list-style: none;
+  margin: 0;
+  padding: 6px max(20px, calc((100vw - 920px) / 2)) 22px;
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: max(20px, calc((100vw - 920px) / 2));
+  -webkit-overflow-scrolling: touch;
+}
+.card-row > li { flex: none; scroll-snap-align: start; }
+
+.game-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: clamp(188px, 56vw, 232px);
+  background: var(--paper);
+  border: var(--line);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.game-card:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+.game-card:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
+
+.game-card .thumb {
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-bottom: var(--line);
+  background: var(--card-color, var(--yellow));
+}
+.game-card .thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.game-card .game-title {
+  display: block;
+  padding: 14px 12px 16px;
+  font-weight: 900;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  text-align: center;
+  border-bottom: 8px solid var(--card-color, var(--yellow));
+}
+.c-red { --card-color: var(--red); }
+.c-blue { --card-color: var(--blue); }
+.c-yellow { --card-color: var(--yellow); }
+.c-green { --card-color: var(--green); }
+
+.badge-new {
+  position: absolute;
+  top: -12px;
+  left: -10px;
+  z-index: 1;
+  padding: 2px 12px;
+  background: var(--red);
+  color: #fff;
+  border: var(--line);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  transform: rotate(-6deg);
+}
+
+/* ④ 総合ランキング（sakuya-kit の出力に合わせる。kit.css は読み込まない） */
+.ranking { padding-bottom: 64px; }
+#board .board-msg { margin: 0; padding: 24px; text-align: center; color: var(--muted); border: var(--line); background: var(--paper); }
+#board .sk-leaderboard {
+  background: var(--paper);
+  border: var(--line);
+  box-shadow: var(--shadow);
+  padding: 22px 18px 24px;
+}
+#board .sk-lb-title { margin: 0 0 8px; font-size: 1.15rem; font-weight: 900; text-align: center; line-height: 1.5; }
+#board .sk-lb-note { margin: 0 0 18px; font-size: 0.74rem; color: var(--muted); text-align: center; line-height: 1.6; }
+#board .sk-lb-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+#board .sk-lb-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 2px solid var(--ink);
+  font-size: 0.92rem;
+}
+#board .sk-lb-row:nth-child(1) { background: #fff3c4; }
+#board .sk-lb-rank { min-width: 2.2em; font-weight: 900; font-size: 1.1rem; text-align: center; }
+#board .sk-lb-name { font-weight: 900; flex: 1 1 8em; min-width: 0; overflow-wrap: anywhere; }
+#board .sk-lb-xname { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; }
+#board .sk-lb-avatar { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
+#board .sk-lb-xlink { color: var(--blue); text-decoration: none; font-weight: 700; }
+#board .sk-lb-xlink:hover { text-decoration: underline; }
+#board .sk-lb-score { margin-left: auto; font-weight: 900; font-variant-numeric: tabular-nums; color: var(--red); }
+#board .sk-lb-games { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 0.72rem; color: var(--muted); }
+#board .sk-lb-game-pts { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+#board .sk-lb-game-top { color: var(--red); }
+#board .sk-lb-roster, #board .sk-lb-sub { flex-basis: 100%; font-size: 0.72rem; color: var(--muted); }
+#board .sk-lb-empty { padding: 18px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+
+/* ⑤ 外へのリンク */
+.links { padding-bottom: 72px; }
+.link-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.link-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 10px 12px;
+  background: var(--paper);
+  border: var(--line);
+  box-shadow: 4px 4px 0 var(--ink);
+  font-weight: 900;
+  text-decoration: none;
+  text-align: center;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+.link-tile:hover { background: var(--yellow); transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+.link-tile:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+
+/* ⑥ フッター */
+.site-footer { padding: 36px 0 52px; border-top: var(--line); background: var(--paper); text-align: center; font-size: 0.86rem; }
+.site-footer p { margin: 0 0 10px; }
+.site-footer a { font-weight: 700; }
+.site-footer .disclaimer { margin-top: 18px; color: var(--muted); font-size: 0.78rem; line-height: 1.7; }
+
+@media (min-width: 640px) {
+  .link-grid { grid-template-columns: repeat(4, 1fr); }
+  .hero { padding-top: 96px; padding-bottom: 72px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-card, .link-tile { transition: none; }
+}

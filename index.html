@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>naoblock ─ 咲耶GAMES &amp; ナノブロック</title>
+    <meta name="description" content="咲耶GAMES・ナノブロック・Nouns ⌐◨-◨ ／ AIと一緒に作った遊べるもの" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="naoblock ─ 咲耶GAMES &amp; ナノブロック" />
+    <meta property="og:description" content="咲耶GAMES・ナノブロック・Nouns ⌐◨-◨ ／ AIと一緒に作った遊べるもの" />
+    <meta property="og:locale" content="ja_JP" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/main.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="./" aria-label="naoblock トップ">
+          <svg class="brand-mark" viewBox="0 0 32 12" shape-rendering="crispEdges" aria-hidden="true">
+            <rect x="0" y="4" width="2" height="2" fill="#E40536" />
+            <rect x="2" y="2" width="12" height="8" fill="#E40536" />
+            <rect x="4" y="4" width="8" height="4" fill="#fff" />
+            <rect x="8" y="4" width="4" height="4" fill="#151515" />
+            <rect x="14" y="4" width="4" height="2" fill="#E40536" />
+            <rect x="18" y="2" width="12" height="8" fill="#E40536" />
+            <rect x="20" y="4" width="8" height="4" fill="#fff" />
+            <rect x="24" y="4" width="4" height="4" fill="#151515" />
+            <rect x="30" y="4" width="2" height="2" fill="#E40536" />
+          </svg>
+          <span class="brand-text">
+            <span class="brand-name">naoblock</span>
+            <span class="brand-sub">⌐◨-◨ 咲耶GAMES &amp; ナノブロック</span>
+          </span>
+        </a>
+        <!-- 右側は空けておく（次の改修で総合1位などを表示） -->
+        <div class="header-side"></div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero wrap">
+        <h1 class="hero-title">naoblockへようこそ</h1>
+        <p class="hero-lead">咲耶GAMES・ナノブロック・Nouns ⌐◨-◨</p>
+        <div class="studs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </section>
+
+      <section class="games" aria-labelledby="games-title">
+        <div class="wrap">
+          <h2 class="section-title" id="games-title">咲耶GAMES</h2>
+        </div>
+        <ul class="card-row" tabindex="0" aria-label="ゲーム一覧（横にスクロールできます）">
+          <li>
+            <a class="game-card c-red" href="https://invaders.naoblock.jp/">
+              <span class="badge-new">NEW</span>
+              <span class="thumb"><img src="https://invaders.naoblock.jp/ogp.png" alt="" width="1200" height="630" loading="lazy" decoding="async" /></span>
+              <span class="game-title">咲耶インベーダー</span>
+            </a>
+          </li>
+          <li>
+            <a class="game-card c-blue" href="https://dig.naoblock.jp/">
+              <span class="thumb"><img src="https://dig.naoblock.jp/ogp.png" alt="" width="1200" height="630" loading="lazy" decoding="async" /></span>
+              <span class="game-title">咲耶ディグ</span>
+            </a>
+          </li>
+          <li>
+            <a class="game-card c-yellow" href="https://jumpbug.naoblock.jp/">
+              <span class="thumb"><img src="https://jumpbug.naoblock.jp/ogp.png" alt="" width="1200" height="630" loading="lazy" decoding="async" /></span>
+              <span class="game-title">咲耶ジャンプバグ</span>
+            </a>
+          </li>
+          <li>
+            <a class="game-card c-green" href="https://rally.naoblock.jp/">
+              <span class="thumb"><img src="https://rally.naoblock.jp/ogp.png" alt="" width="1200" height="630" loading="lazy" decoding="async" /></span>
+              <span class="game-title">咲耶Nounラリー</span>
+            </a>
+          </li>
+          <li>
+            <a class="game-card c-red" href="https://sakuya.naoblock.jp/">
+              <span class="thumb"><img src="https://sakuya.naoblock.jp/ogp.png" alt="" width="1200" height="630" loading="lazy" decoding="async" /></span>
+              <span class="game-title">咲耶スクランブル</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="ranking wrap" aria-label="総合ランキング">
+        <div id="board"><p class="board-msg">読み込み中...</p></div>
+        <noscript><p class="board-msg">ランキングの表示にはJavaScriptが必要です。</p></noscript>
+      </section>
+
+      <section class="links wrap" aria-labelledby="links-title">
+        <h2 class="section-title" id="links-title">リンク</h2>
+        <ul class="link-grid">
+          <li><a class="link-tile" href="https://www.youtube.com/@naoblock" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          <li><a class="link-tile" href="https://note.com/naoki_yokoo" target="_blank" rel="noopener noreferrer">note</a></li>
+          <li><a class="link-tile" href="https://x.com/yokoon1" target="_blank" rel="noopener noreferrer">X</a></li>
+          <li><a class="link-tile" href="https://waiwai.town/" target="_blank" rel="noopener noreferrer">わいわいタウン</a></li>
+          <li><a class="link-tile" href="https://www.instagram.com/naoblock.jp/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a class="link-tile" href="https://naoblock.substack.com/" target="_blank" rel="noopener noreferrer">Substack</a></li>
+          <li><a class="link-tile" href="mailto:naoblock.jp@gmail.com">お問い合わせ</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p><a href="archive/ninket2026/">アーカイブ: にんケット2026</a></p>
+        <p>NounsDaoJapan BlockArtWorkTM ⌐◨-◨</p>
+        <p class="disclaimer"><strong>注意：</strong>このサイトで紹介するブロックアート作品は個人制作による非公式のファンメイド作品です。株式会社カワダ様の公式商品・公認商品ではありません。</p>
+      </div>
+    </footer>
+
+    <script type="module">
+      // 総合ランキング（sakuya-kit）。読み込めなかったときはメッセージだけ出す。
+      const board = document.getElementById("board");
+      import("https://cdn.jsdelivr.net/gh/naonao1971/sakuya-kit@0.2.0/kit.js")
+        .then(({ mountOverallRanking }) => {
+          mountOverallRanking(board, {
+            gasUrl: "https://script.google.com/macros/s/AKfycby-UoKAfHw4eBULVb37tQzwPEhNm65B_HUktd9Sh0ZxMdOdmnRHdub0NeeXUCAqg8bG/exec",
+            limit: 10,
+          });
+        })
+        .catch((e) => {
+          console.error(e);
+          board.innerHTML = '<p class="board-msg">ランキングを読み込めませんでした。</p>';
+        });
+    </script>
+  </body>
+</html>
