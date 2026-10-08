@@ -3,8 +3,8 @@
   --paper: #ffffff;
   --ink: #151515;
   --muted: #5d5d5d;
-  --red: #e40536;
-  --blue: #4965f0;
+  --red: #da0534;
+  --blue: #405def;
   --yellow: #ffc110;
   --green: #2fb85a;
   --line: 3px solid var(--ink);
@@ -43,7 +43,7 @@ a { color: inherit; }
 .brand-mark { width: 44px; height: auto; flex: none; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.25; }
 .brand-name { font-family: var(--font-display); font-size: 1.9rem; letter-spacing: 0.02em; }
-.brand-sub { font-size: 0.72rem; color: var(--muted); font-weight: 700; }
+.brand-sub { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
 .header-side { min-width: 0; }
 
 /* Londrina Solid は字幅が細く小文字も低いので、日本語と混ざる行では英字だけ少し大きくして揃える */
@@ -147,7 +147,7 @@ a { color: inherit; }
   color: #fff;
   border: var(--line);
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1rem;
   line-height: 1.4;
   letter-spacing: 0.06em;
   transform: rotate(-6deg);
@@ -163,7 +163,7 @@ a { color: inherit; }
   padding: 22px 18px 24px;
 }
 #board .sk-lb-title { margin: 0 0 8px; font-family: var(--font-display); font-size: 1.15rem; font-weight: 900; text-align: center; line-height: 1.5; }
-#board .sk-lb-note { margin: 0 0 18px; font-size: 0.74rem; color: var(--muted); text-align: center; line-height: 1.6; }
+#board .sk-lb-note { margin: 0 0 18px; font-size: 0.92rem; color: var(--muted); text-align: center; line-height: 1.6; }
 #board .sk-lb-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 #board .sk-lb-row {
   display: flex;
@@ -176,18 +176,18 @@ a { color: inherit; }
   font-size: 0.92rem;
 }
 #board .sk-lb-row:nth-child(1) { background: #fff3c4; }
-#board .sk-lb-rank { min-width: 2.2em; font-family: var(--font-display); font-weight: 900; font-size: 1.3rem; line-height: 1; text-align: center; }
+#board .sk-lb-rank { min-width: 2.2em; font-family: var(--font-display); font-weight: 900; font-size: 1.2rem; line-height: 1; text-align: center; }
 #board .sk-lb-name { font-weight: 900; flex: 1 1 4.5em; min-width: 0; overflow-wrap: anywhere; }
 #board .sk-lb-xname { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; }
 #board .sk-lb-avatar { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
 #board .sk-lb-xlink { color: var(--blue); text-decoration: none; font-weight: 700; }
 #board .sk-lb-xlink:hover { text-decoration: underline; }
 #board .sk-lb-score { margin-left: auto; font-family: var(--font-display); font-size: 1.2rem; line-height: 1; letter-spacing: 0.02em; font-weight: 900; font-variant-numeric: tabular-nums; color: var(--red); }
-#board .sk-lb-games { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 0.72rem; color: var(--muted); }
+#board .sk-lb-games { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 0.75rem; color: var(--muted); }
 #board .sk-lb-game-pts { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
 #board .sk-lb-game-top { color: var(--red); }
 #board .sk-lb-roster { display: none; }
-#board .sk-lb-sub { flex-basis: 100%; font-size: 0.72rem; color: var(--muted); }
+#board .sk-lb-sub { flex-basis: 100%; font-size: 0.75rem; color: var(--muted); }
 #board .sk-lb-empty { padding: 18px; text-align: center; color: var(--muted); font-size: 0.9rem; }
 
 /* ⑤ 外へのリンク */
@@ -219,10 +219,10 @@ a { color: inherit; }
 .link-tile:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
 
 /* ⑥ フッター */
-.site-footer { padding: 36px 0 52px; border-top: var(--line); background: var(--paper); text-align: center; font-size: 0.86rem; }
+.site-footer { padding: 36px 0 52px; border-top: var(--line); background: var(--paper); text-align: center; font-size: 0.92rem; }
 .site-footer p { margin: 0 0 10px; }
 .site-footer a { font-weight: 700; }
-.site-footer .disclaimer { margin-top: 18px; color: var(--muted); font-size: 0.78rem; line-height: 1.7; }
+.site-footer .disclaimer { margin-top: 18px; color: var(--muted); font-size: 0.92rem; line-height: 1.7; }
 
 /* 修正A: スマホ幅ではランキングを5位まで（PCは10位まで） */
 @media (max-width: 599px) {
