@@ -217,9 +217,29 @@ a { color: inherit; }
 .site-footer a { font-weight: 700; }
 .site-footer .disclaimer { margin-top: 18px; color: var(--muted); font-size: 0.78rem; line-height: 1.7; }
 
+/* 修正A: スマホ幅ではランキングを5位まで（PCは10位まで） */
+@media (max-width: 599px) {
+  #board .sk-lb-list > li:nth-child(n+6) { display: none; }
+}
+
 @media (min-width: 640px) {
   .link-grid { grid-template-columns: repeat(4, 1fr); }
   .hero { padding-top: 96px; padding-bottom: 72px; }
+}
+
+/* 修正B: PC幅ではゲームカード5枚をスクロールなしで1列に並べる */
+@media (min-width: 960px) {
+  .card-row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 14px 20px 22px;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .game-card { width: auto; height: 100%; }
+  .game-card .game-title { font-size: 1rem; padding-left: 8px; padding-right: 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
