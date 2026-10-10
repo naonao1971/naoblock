@@ -43,6 +43,7 @@ a { color: inherit; }
 .brand-mark { width: 44px; height: auto; flex: none; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.25; }
 .brand-name { font-family: var(--font-display); font-size: 1.9rem; letter-spacing: 0.02em; }
+.brand-official { font-size: 0.6em; color: var(--muted); letter-spacing: 0.04em; }
 .brand-sub { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
 .header-side { min-width: 0; }
 
