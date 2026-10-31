@@ -1,0 +1,42 @@
+# naoblock ⌐◨-◨ 欄を Instagram の最新6件に自動で差し替える（tools/insta_auto.py）
+# トークンはリポジトリのシークレット IG_TOKEN（読むだけの権限 instagram_basic・無期限）
+name: insta-auto
+
+on:
+  schedule:
+    - cron: "0 22 * * *" # 毎朝 7:00 JST
+    - cron: "0 12 * * *" # 毎晩 21:00 JST
+  workflow_dispatch: # Actions 画面から手動でも動かせる
+
+permissions:
+  contents: write
+
+concurrency:
+  group: insta-auto
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - run: python3 tools/insta_auto.py
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+      - name: 変わっていたら main に push
+        run: |
+          if git diff --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html assets/insta
+          git commit -m "naoblock ⌐◨-◨ 欄をインスタの最新6件に自動更新"
+          git push
