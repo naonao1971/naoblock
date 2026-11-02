@@ -1,12 +1,12 @@
 ---
 name: naoblock-insta-update
 description: >
-  naoblock.jp の「naoblock ⌐◨-◨」欄（トップページのブロックアート欄・インスタ作品6枚）を差し替えるスキル。
-  なおなおがインスタの投稿URLを6件渡して「インスタ欄を差し替えて」「⌐◨-◨欄を最新にして」「インスタ更新した」と頼んだときに使う。
+  naoblock.jp の「naoblock photo」欄（旧「naoblock ⌐◨-◨」欄）（トップページのブロックアート欄・インスタ作品6枚）を差し替えるスキル。
+  なおなおがインスタの投稿URLを6件渡して「インスタ欄を差し替えて」「photo欄を最新にして」「⌐◨-◨欄を最新にして」「インスタ更新した」と頼んだときに使う。
   スマホの Claude（Claude Code on the web）から、Macを使わずに実行できる。
 ---
 
-# naoblock ⌐◨-◨ 欄の差し替え
+# naoblock photo 欄の差し替え
 
 `index.html` の `<ul class="art-grid">` の6枚と、`assets/insta/01.jpg`〜`06.jpg` を、渡された6件の投稿に入れ替える。
 この欄は手動タイル方式（HTMLに直接書く）。インスタに投稿しただけではサイトに出ないので、このスキルで入れ替える。
@@ -48,7 +48,7 @@ git diff --stat   # index.html と assets/insta/ だけが変わっているこ�
 - **Mac（秘書室bot）のとき**：`python3 -m http.server 8000 --bind 0.0.0.0` で携帯から見てもらい（家のWi-Fiなら http://MacのIP:8000/ 、IPは `ipconfig getifaddr en0` で調べる）、OKをもらってから `main` に push する
 - 公開して数分したら https://naoblock.jp/ を開いて、6枚が新しくなっているか確かめる（キャッシュで古いままのときは少し待つ）
 
-コミットメッセージ例：`naoblock ⌐◨-◨ 欄のインスタ作品6点を差し替え`
+コミットメッセージ例：`naoblock photo 欄のインスタ作品6点を差し替え`
 
 ## 守ること
 - 見出し・ボタンには「ナノブロック」をブランド名として使わない（カワダの商標）。リード文や alt で「ナノブロックで作った」と素材として触れるのはよい（作品はすべてナノブロック製）

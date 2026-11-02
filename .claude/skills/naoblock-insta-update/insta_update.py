@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""naoblock ⌐◨-◨ 欄（index.html の .art-grid）の6枚を差し替える。
+"""naoblock photo 欄（index.html の .art-grid）の6枚を差し替える。
 
 使い方（リポジトリのルートで実行）:
   1) 画像を取ってくる
