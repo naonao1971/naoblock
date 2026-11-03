@@ -302,3 +302,28 @@ a { color: inherit; }
   border-bottom: 8px solid var(--blue);
 }
 @media (prefers-reduced-motion: reduce) { .builder-card { transition: none; } }
+
+/* みんなの作品（投稿サイト post.naoblock.jp の新着） */
+.community { padding-bottom: 64px; }
+.community .section-title::before { background: var(--green); }
+.community-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+@media (min-width: 640px) { .community-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+.community-grid .board-msg { grid-column: 1 / -1; }
+.community-tile {
+  display: flex; flex-direction: column; min-width: 0; padding: 10px;
+  background: var(--paper); border: var(--line); box-shadow: var(--shadow);
+  color: var(--ink); text-decoration: none; transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.community-tile:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+.community-tile img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: contain; background: var(--bg); }
+.community-tile b { margin-top: 8px; font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.community-tile small { color: var(--muted); font-size: 0.75rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.community-btns { display: flex; gap: 14px; justify-content: center; margin-top: 24px; flex-wrap: wrap; }
+.community-btn {
+  display: inline-block; padding: 12px 22px; min-width: 150px; text-align: center;
+  background: var(--paper); border: var(--line); box-shadow: var(--shadow);
+  color: var(--ink); font-weight: 700; text-decoration: none;
+}
+.community-btn.primary { background: var(--green); color: #fff; }
+.community-btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
+@media (prefers-reduced-motion: reduce) { .community-tile { transition: none; } }
