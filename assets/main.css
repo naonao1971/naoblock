@@ -327,3 +327,10 @@ a { color: inherit; }
 .community-btn.primary { background: var(--green); color: #fff; }
 .community-btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
 @media (prefers-reduced-motion: reduce) { .community-tile { transition: none; } }
+
+/* メールで受け取る（Substack の登録フォーム） */
+.newsletter { margin: 40px auto 0; max-width: 480px; text-align: center; }
+.newsletter-title { margin: 0 0 16px; font-size: 1.1rem; font-weight: 900; }
+.newsletter-title .en { margin-left: 8px; font-family: var(--font-display); color: var(--muted); font-weight: 400; }
+.newsletter .art-lead { margin: 0 0 16px; }
+.newsletter-frame { display: block; width: 100%; height: 320px; background: #fff; border: var(--line); box-shadow: var(--shadow); }
