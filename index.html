@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/main.css?v=20261024" />
+    <link rel="stylesheet" href="assets/main.css?v=20261103" />
   </head>
   <body>
     <header class="site-header">
@@ -105,7 +105,7 @@
 
       <section class="builder wrap" aria-labelledby="builder-title">
         <h2 class="section-title" id="builder-title"><span class="en">naoblock BUILDER</span></h2>
-        <p class="art-lead">好きな<span class="en">Noun</span>やドット絵を、ナノブロックの組立図に。平面のドット絵も、立体のミニナノ風も。画面で組み立てて、印刷して、実物に。</p>
+        <p class="art-lead">好きな<span class="en">Noun</span>やドット絵を、ナノブロックの組立図に。平面のドット絵も、立体の3Dも。画面で組み立てて、印刷して、実物に。</p>
         <div class="builder-cards">
           <a class="builder-card" href="https://builder.naoblock.jp/">
             <span class="builder-kind"><span class="en">2D</span>｜ドット絵</span>
@@ -113,10 +113,20 @@
             <span class="builder-go">組み立ててみる</span>
           </a>
           <a class="builder-card" href="https://builder-3d.naoblock.jp/">
-            <span class="builder-kind"><span class="en">3D</span>｜ミニナノ風</span>
+            <span class="builder-kind"><span class="en">3D</span>｜立体</span>
             <span class="thumb"><img src="https://builder-3d.naoblock.jp/ogp.png?v=1" alt="" width="1200" height="630" loading="lazy" decoding="async" /></span>
             <span class="builder-go">組み立ててみる</span>
           </a>
+        </div>
+      </section>
+
+      <section class="community wrap" id="community" aria-labelledby="community-title">
+        <h2 class="section-title" id="community-title">みんなの作品<span class="en">COMMUNITY</span></h2>
+        <p class="art-lead">ナオブロック投稿サイトに届いた、みんなの3D組立図。見る・組み立てるのはログインなしでOK。投稿はLINEログインでできます。</p>
+        <div class="community-grid" id="communityGrid"><p class="board-msg">読み込み中...</p></div>
+        <div class="community-btns">
+          <a class="community-btn" href="https://post.naoblock.jp/">もっと見る</a>
+          <a class="community-btn primary" href="https://post.naoblock.jp/#post">作品を投稿する</a>
         </div>
       </section>
 
@@ -183,6 +193,25 @@
       </div>
     </footer>
 
+    <script type="module">
+      // みんなの作品：投稿サイト（post.naoblock.jp）の新着6作品。GAS の URL は投稿サイトの config.js と同じ
+      const POST_GAS = "";
+      const grid = document.getElementById("communityGrid");
+      const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+      (async () => {
+        if (!POST_GAS) { grid.innerHTML = '<p class="board-msg">もうすぐオープンします。</p>'; return; }
+        try {
+          const j = await (await fetch(`${POST_GAS}?action=list&limit=6`)).json();
+          if (!j.ok) throw new Error(j.error);
+          grid.innerHTML = j.works.length
+            ? j.works.map((w) => `<a class="community-tile" href="https://post.naoblock.jp/#work-${w.id}"><img src="${esc(w.thumb)}" alt="" loading="lazy" decoding="async" /><b>${esc(w.name)}</b><small>${esc(w.author)}・${w.parts}パーツ</small></a>`).join("")
+            : '<p class="board-msg">まだ作品がありません。最初の1作品を投稿してみませんか？</p>';
+        } catch (e) {
+          console.error(e);
+          grid.innerHTML = '<p class="board-msg">みんなの作品を読み込めませんでした。</p>';
+        }
+      })();
+    </script>
     <script type="module">
       // 総合ランキング（sakuya-kit）。読み込めなかったときはメッセージだけ出す。
       const board = document.getElementById("board");
