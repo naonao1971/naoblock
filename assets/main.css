@@ -303,7 +303,7 @@ a { color: inherit; }
 }
 @media (prefers-reduced-motion: reduce) { .builder-card { transition: none; } }
 
-/* みんなの作品（投稿サイト post.naoblock.jp の新着） */
+/* みんなの作品（投稿サイト post.naoblock.com の新着） */
 .community { padding-bottom: 64px; }
 .community .section-title::before { background: var(--green); }
 .community-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
