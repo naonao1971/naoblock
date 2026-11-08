@@ -51,16 +51,19 @@ a { color: inherit; }
 .en { font-size: 1.15em; line-height: 1; letter-spacing: 0.02em; }
 
 /* ② ヒーロー */
-.hero { text-align: center; padding-top: 72px; padding-bottom: 56px; }
+.hero { text-align: center; padding-top: 32px; padding-bottom: 40px; }
 .hero-title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2.1rem, 8.4vw, 3.6rem);
+  font-size: clamp(1.55rem, 6.6vw, 2.8rem);
   font-weight: 900;
-  line-height: 1.25;
+  line-height: 1.35;
   letter-spacing: 0.01em;
 }
-.hero-lead { margin: 16px 0 0; font-size: clamp(0.95rem, 3.6vw, 1.15rem); color: var(--muted); font-weight: 700; }
+.hero-hello { margin: 0 0 10px; font-family: var(--font-display); font-size: clamp(1rem, 4vw, 1.3rem); font-weight: 900; color: var(--muted); }
+.hero-lead { margin: 16px auto 0; max-width: 34em; font-size: clamp(0.95rem, 3.6vw, 1.1rem); color: var(--muted); font-weight: 700; line-height: 1.7; word-break: auto-phrase; }
+.hero-btns { display: flex; flex-direction: column; gap: 14px; align-items: stretch; max-width: 360px; margin: 24px auto 0; }
+.hero-btn { font-size: 1.05rem; }
 .studs { display: flex; justify-content: center; gap: 10px; margin-top: 28px; }
 .studs i { width: 16px; height: 16px; border: 3px solid var(--ink); display: block; }
 .studs i:nth-child(1) { background: var(--red); }
@@ -232,7 +235,8 @@ a { color: inherit; }
 
 @media (min-width: 640px) {
   .link-grid { grid-template-columns: repeat(4, 1fr); }
-  .hero { padding-top: 96px; padding-bottom: 72px; }
+  .hero { padding-top: 64px; padding-bottom: 64px; }
+  .hero-btns { flex-direction: row; flex-wrap: wrap; justify-content: center; max-width: none; }
 }
 
 /* 修正B: PC幅ではゲームカード5枚をスクロールなしで1列に並べる */
@@ -334,3 +338,19 @@ a { color: inherit; }
 .newsletter-title .en { margin-left: 8px; font-family: var(--font-display); color: var(--muted); font-weight: 400; }
 .newsletter .art-lead { margin: 0 0 16px; }
 .newsletter-frame { display: block; width: 100%; height: 320px; background: #fff; border: var(--line); box-shadow: var(--shadow); }
+
+/* LINE と Substack の案内（届くものが違うので2枚に分ける） */
+.subscribe { display: grid; gap: 24px; margin: 40px auto 0; max-width: 480px; }
+.subscribe-card { padding: 20px 18px; text-align: center; background: var(--paper); border: var(--line); box-shadow: var(--shadow); }
+.subscribe-card .newsletter-title { line-height: 1.5; word-break: auto-phrase; }
+.subscribe-card .art-lead { margin: 0 0 16px; word-break: auto-phrase; }
+.subscribe-btn { display: block; color: #fff; }
+.is-line .subscribe-btn { background: #06c755; }
+.is-substack .subscribe-btn { background: #ff6719; }
+.subscribe-note { margin: 20px 0 10px; font-size: 0.85rem; color: var(--muted); }
+.subscribe-card .newsletter-frame { box-shadow: none; }
+@media (min-width: 960px) { .subscribe { max-width: 980px; grid-template-columns: 1fr 1fr; align-items: start; } }
+/* スマホ：Substack のフォームはカードの余白を使い切って幅いっぱいに（狭いと入力欄がつぶれる） */
+@media (max-width: 959px) {
+  .subscribe-card .newsletter-frame { width: calc(100% + 36px); margin: 0 -18px -20px; border-width: 3px 0 0; }
+}
