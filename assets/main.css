@@ -60,10 +60,11 @@ a { color: inherit; }
   line-height: 1.35;
   letter-spacing: 0.01em;
 }
-.hero-hello { margin: 0 0 10px; font-family: var(--font-display); font-size: clamp(1rem, 4vw, 1.3rem); font-weight: 900; color: var(--muted); }
+.hero-hello { margin: 0 0 10px; font-family: var(--font-display); font-size: clamp(0.95rem, 3.6vw, 1.1rem); font-weight: 900; color: var(--muted); }
 .hero-lead { margin: 16px auto 0; max-width: 34em; font-size: clamp(0.95rem, 3.6vw, 1.1rem); color: var(--muted); font-weight: 700; line-height: 1.7; word-break: auto-phrase; }
 .hero-btns { display: flex; flex-direction: column; gap: 14px; align-items: stretch; max-width: 360px; margin: 24px auto 0; }
-.hero-btn { font-size: 1.05rem; }
+.hero-btn { font-size: 1rem; }
+.hero-note { margin: 14px 0 0; font-size: 0.92rem; color: var(--muted); font-weight: 700; }
 .studs { display: flex; justify-content: center; gap: 10px; margin-top: 28px; }
 .studs i { width: 16px; height: 16px; border: 3px solid var(--ink); display: block; }
 .studs i:nth-child(1) { background: var(--red); }
@@ -295,14 +296,14 @@ a { color: inherit; }
 .builder-card:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
 .builder-kind {
   display: block; padding: 8px 12px; border-bottom: var(--line);
-  font-weight: 700; font-size: 0.95rem;
+  font-weight: 700; font-size: 1rem;
 }
 .builder-kind .en { font-family: var(--font-display); font-weight: 900; }
 .builder-card .thumb { display: block; aspect-ratio: 1200 / 630; overflow: hidden; border-bottom: var(--line); background: var(--blue); }
 .builder-card .thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .builder-go {
   display: block; margin-top: auto; padding: 12px; text-align: center;
-  font-family: var(--font-display); font-weight: 900; font-size: 1.05rem;
+  font-family: var(--font-display); font-weight: 900; font-size: 1rem;
   border-bottom: 8px solid var(--blue);
 }
 @media (prefers-reduced-motion: reduce) { .builder-card { transition: none; } }
@@ -320,7 +321,7 @@ a { color: inherit; }
 }
 .community-tile:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
 .community-tile img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: contain; background: var(--bg); }
-.community-tile b { margin-top: 8px; font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.community-tile b { margin-top: 8px; font-size: 1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .community-tile small { color: var(--muted); font-size: 0.75rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .community-btns { display: flex; gap: 14px; justify-content: center; margin-top: 24px; flex-wrap: wrap; }
 .community-btn {
@@ -328,7 +329,7 @@ a { color: inherit; }
   background: var(--paper); border: var(--line); box-shadow: var(--shadow);
   color: var(--ink); font-weight: 700; text-decoration: none;
 }
-.community-btn.primary { background: var(--green); color: #fff; }
+.community-btn.primary { background: var(--green); color: var(--ink); }
 .community-btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
 @media (prefers-reduced-motion: reduce) { .community-tile { transition: none; } }
 
@@ -344,10 +345,10 @@ a { color: inherit; }
 .subscribe-card { padding: 20px 18px; text-align: center; background: var(--paper); border: var(--line); box-shadow: var(--shadow); }
 .subscribe-card .newsletter-title { line-height: 1.5; word-break: auto-phrase; }
 .subscribe-card .art-lead { margin: 0 0 16px; word-break: auto-phrase; }
-.subscribe-btn { display: block; color: #fff; }
+.subscribe-btn { display: block; color: var(--ink); }
 .is-line .subscribe-btn { background: #06c755; }
 .is-substack .subscribe-btn { background: #ff6719; }
-.subscribe-note { margin: 20px 0 10px; font-size: 0.85rem; color: var(--muted); }
+.subscribe-note { margin: 20px 0 10px; font-size: 0.92rem; color: var(--muted); }
 .subscribe-card .newsletter-frame { box-shadow: none; }
 @media (min-width: 960px) { .subscribe { max-width: 980px; grid-template-columns: 1fr 1fr; align-items: start; } }
 /* スマホ：Substack のフォームはカードの余白を使い切って幅いっぱいに（狭いと入力欄がつぶれる） */
