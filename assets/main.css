@@ -194,6 +194,8 @@ a { color: inherit; }
 #board .sk-lb-roster { display: none; }
 #board .sk-lb-sub { flex-basis: 100%; font-size: 0.75rem; color: var(--muted); }
 #board .sk-lb-empty { padding: 18px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+.ranking-more { margin: 20px 0 0; text-align: center; }
+.ranking-page { padding-top: 32px; }
 
 /* ⑤ 外へのリンク */
 .links { padding-bottom: 72px; }
@@ -232,6 +234,7 @@ a { color: inherit; }
 /* 修正A: スマホ幅ではランキングを5位まで（PCは10位まで） */
 @media (max-width: 599px) {
   #board .sk-lb-list > li:nth-child(n+6) { display: none; }
+  .ranking-page #board .sk-lb-list > li { display: flex; } /* 全員ページは全部出す */
 }
 
 @media (min-width: 640px) {
