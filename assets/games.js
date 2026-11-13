@@ -13,7 +13,8 @@ export async function loadGames(base = "") {
 export function gameCard(g, { detail = false } = {}) {
   const thumb = g.thumb || `${g.url.replace(/\/?$/, "/")}ogp.png`;
   return `<a class="game-card c-${esc(g.color || "yellow")}${detail ? " is-detail" : ""}" href="${esc(g.url)}">`
-    + (g.badge ? `<span class="badge-new">${esc(g.badge)}</span>` : "")
+    // line: true は公式LINEの友だち限定の先行公開（NEW などより優先して出す）
+    + (g.line ? `<span class="badge-new badge-line">🔒 LINE先行</span>` : g.badge ? `<span class="badge-new">${esc(g.badge)}</span>` : "")
     + `<span class="thumb"><img src="${esc(thumb)}" alt="" width="1200" height="630" loading="lazy" decoding="async" /></span>`
     + `<span class="game-title">${titleHtml(g.title)}</span>`
     + (detail

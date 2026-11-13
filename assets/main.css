@@ -157,6 +157,7 @@ a { color: inherit; }
   letter-spacing: 0.06em;
   transform: rotate(-6deg);
 }
+.badge-line { background: #06c755; font-family: var(--font-body); font-weight: 900; font-size: 0.85rem; }
 
 /* ④ 総合ランキング（sakuya-kit の出力に合わせる。kit.css は読み込まない） */
 .ranking { padding-bottom: 64px; }

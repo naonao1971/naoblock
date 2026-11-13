@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>LINE友だちの確認｜naoblock</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../assets/main.css?v=20261114b" />
+  <style>
+    /* ゲームの先行公開で使う「LINE友だちかどうか」の確認ページ。ゲーム側は gate.js を読み込む */
+    body { min-height: 100vh; display: grid; place-items: center; padding: 24px 16px; }
+    .box { width: min(100%, 460px); background: var(--paper); border: var(--line); box-shadow: var(--shadow); padding: 28px 22px; text-align: center; }
+    .box h1 { margin: 0 0 12px; font-size: 1.25rem; }
+    .box p { margin: 0 0 14px; line-height: 1.8; }
+    .line-btn { display: inline-block; margin: 6px 4px; padding: 12px 22px; border: var(--line); background: #06c755; color: #fff; font: 900 1rem var(--font-body); text-decoration: none; cursor: pointer; }
+    .line-btn.sub { background: var(--paper); color: var(--ink); }
+    .note { font-size: 0.8rem; color: var(--muted); margin-top: 18px !important; }
+    .note a, .note button { color: var(--muted); }
+    .note button { background: none; border: 0; padding: 0; font: inherit; text-decoration: underline; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <main class="box" id="box"><p>LINE を確かめています…</p></main>
+  <script>
+    // 1. ゲームの「LINEで確かめる」から ?back=ゲームのURL つきで来る
+    // 2. LIFF でログイン → 公式LINE「NCNPナオブロックラボ」の友だちか確かめる（ブラウザ内だけの簡易判定）
+    // 3. 友だちなら naoblock.com 全体（サブドメインのゲームも）で読める目印のクッキーを置いて、ゲームへ戻す
+    const LIFF_ID = "2012312496-FDhWt3Dh"; // LINE Developers「naoblock 3D」チャネルの「naoblock ゲーム先行」
+    const LINE_ADD = "https://line.me/R/ti/p/@134wkonl";
+    const COOKIE = "nb_line";
+    const DAYS = 30; // 30日ごとに確かめ直す（Safari は 7日で消すので、そのときはボタン1回で戻れる）
+    const box = document.getElementById("box");
+    const privacy = `<p class="note">ログインで受け取るのは、友だちかどうかの確認に使う LINE の情報だけです。<a href="privacy.html">プライバシーポリシー</a></p>`;
+
+    // 戻り先は naoblock.com とそのサブドメインだけ（よそのサイトへの転送に使われないように）
+    const safeBack = (v) => {
+      try {
+        const u = new URL(v);
+        if (u.protocol === "https:" && (u.hostname === "naoblock.com" || u.hostname.endsWith(".naoblock.com"))) return u.href;
+      } catch { /* 下の既定へ */ }
+      return null;
+    };
+    const params = new URLSearchParams(location.search);
+    let back = safeBack(params.get("back") || "");
+    try {
+      if (back) sessionStorage.setItem("nbLineBack", back);
+      else back = safeBack(sessionStorage.getItem("nbLineBack") || ""); // LINE ログインから戻ったとき用
+    } catch { /* なくても動く */ }
+    const fallback = "https://naoblock.com/games/";
+
+    const show = (html) => { box.innerHTML = html + privacy; };
+    const setPass = () => {
+      const host = location.hostname.endsWith("naoblock.com") ? "; domain=naoblock.com" : "";
+      document.cookie = `${COOKIE}=${Date.now()}; path=/; max-age=${DAYS * 86400}; secure; samesite=lax${host}`;
+    };
+    const clearPass = () => {
+      const host = location.hostname.endsWith("naoblock.com") ? "; domain=naoblock.com" : "";
+      document.cookie = `${COOKIE}=; path=/; max-age=0; secure; samesite=lax${host}`;
+    };
+
+    const loadLiff = () => new Promise((ok, ng) => {
+      const s = document.createElement("script");
+      s.src = "https://static.line-scdn.net/liff/edge/2/sdk.js";
+      s.onload = () => liff.init({ liffId: LIFF_ID }).then(ok, ng);
+      s.onerror = ng;
+      document.head.append(s);
+    });
+
+    const login = () => {
+      // 戻ってきたら同じページ（?back= も残す）で続きをする
+      const u = new URL(location.href);
+      u.search = back ? `?back=${encodeURIComponent(back)}` : "";
+      u.hash = "";
+      liff.login({ redirectUri: u.href });
+    };
+
+    const check = async () => {
+      show("<p>LINE を確かめています…</p>");
+      try {
+        if (!window.liff) await loadLiff();
+        // ログインから戻ったときの ?code= は liff.init が読み終えたので、URL を整える
+        history.replaceState(null, "", back ? `${location.pathname}?back=${encodeURIComponent(back)}` : location.pathname);
+        if (!liff.isLoggedIn()) {
+          show(`<h1>🔒 LINE友だち限定の先行公開</h1>
+            <p>新しいゲームは、公式LINE「NCNPナオブロックラボ」の友だちが先に遊べます。</p>
+            <p>LINE でログインすると、そのまま友だち追加もできます。</p>
+            <div><button type="button" class="line-btn" id="login">LINE でログインして遊ぶ</button></div>`);
+          document.getElementById("login").onclick = login;
+          return;
+        }
+        const { friendFlag } = await liff.getFriendship();
+        if (friendFlag) {
+          setPass();
+          show(`<h1>✅ 確認できました</h1><p>ゲームに戻ります…</p><div><a class="line-btn" href="${back || fallback}">ゲームへ</a></div>`);
+          try { sessionStorage.removeItem("nbLineBack"); } catch { /* なくてよい */ }
+          setTimeout(() => location.replace(back || fallback), 600);
+          return;
+        }
+        clearPass();
+        show(`<h1>あと一歩です！</h1>
+          <p>公式LINE「NCNPナオブロックラボ」を友だち追加すると、遊べるようになります。</p>
+          <div><a class="line-btn" href="${LINE_ADD}" target="_blank" rel="noopener">友だち追加する</a><button type="button" class="line-btn sub" id="recheck">追加したので確かめる</button></div>
+          <p class="note"><button type="button" id="logout">別の LINE アカウントでログインし直す</button></p>`);
+        document.getElementById("recheck").onclick = check;
+        document.getElementById("logout").onclick = () => { liff.logout(); check(); };
+      } catch (err) {
+        console.error(err);
+        show(`<p>LINE とつながりませんでした。時間をおいて、もう一度ためしてください。</p><div><button type="button" class="line-btn sub" id="retry">もう一度</button></div>`);
+        document.getElementById("retry").onclick = () => location.reload();
+      }
+    };
+    check();
+  </script>
+</body>
+</html>

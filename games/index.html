@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/main.css?v=20261114" />
+    <link rel="stylesheet" href="../assets/main.css?v=20261114b" />
   </head>
   <body>
     <header class="site-header">
@@ -93,7 +93,7 @@
     <script type="module">
       // ゲームの台帳（../assets/games.json）を、検索・ジャンル／キャラ・並び順で絞って並べる。
       // 絞り込みは URL（?q=&genre=&chara=&sort=）にも残すので、そのまま共有できる
-      import { loadGames, gameCard } from "../assets/games.js?v=20261114";
+      import { loadGames, gameCard } from "../assets/games.js?v=20261114b";
       const $ = (id) => document.getElementById(id);
       const grid = $("grid"), chips = $("chips"), count = $("count"), q = $("q"), sort = $("sort");
       const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
