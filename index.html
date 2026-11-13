@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/main.css?v=20261111" />
+    <link rel="stylesheet" href="assets/main.css?v=20261114" />
   </head>
   <body>
     <header class="site-header">
@@ -72,39 +72,12 @@
         <div class="wrap">
           <h2 class="section-title" id="games-title"><span class="en">naoblock GAMES</span></h2>
         </div>
-        <ul class="card-row" tabindex="0" aria-label="ゲーム一覧（横にスクロールできます）">
-          <li>
-            <a class="game-card c-red" href="https://invaders.naoblock.com/">
-              <span class="badge-new">NEW</span>
-              <span class="thumb"><img src="https://invaders.naoblock.com/ogp.png" alt="" width="1200" height="630" loading="lazy" decoding="async" /></span>
-              <span class="game-title">咲耶インベーダー</span>
-            </a>
-          </li>
-          <li>
-            <a class="game-card c-blue" href="https://dig.naoblock.com/">
-              <span class="thumb"><img src="https://dig.naoblock.com/ogp.png" alt="" width="1200" height="630" loading="lazy" decoding="async" /></span>
-              <span class="game-title">咲耶ディグ</span>
-            </a>
-          </li>
-          <li>
-            <a class="game-card c-yellow" href="https://jumpbug.naoblock.com/">
-              <span class="thumb"><img src="https://jumpbug.naoblock.com/ogp.png" alt="" width="1200" height="630" loading="lazy" decoding="async" /></span>
-              <span class="game-title">咲耶ジャンプバグ</span>
-            </a>
-          </li>
-          <li>
-            <a class="game-card c-green" href="https://rally.naoblock.com/">
-              <span class="thumb"><img src="https://rally.naoblock.com/ogp.png" alt="" width="1200" height="630" loading="lazy" decoding="async" /></span>
-              <span class="game-title">咲耶<span class="en">Noun</span>ラリー</span>
-            </a>
-          </li>
-          <li>
-            <a class="game-card c-red" href="https://sakuya.naoblock.com/">
-              <span class="thumb"><img src="https://sakuya.naoblock.com/ogp.png" alt="" width="1200" height="630" loading="lazy" decoding="async" /></span>
-              <span class="game-title">咲耶スクランブル</span>
-            </a>
-          </li>
+        <ul class="card-row" id="game-row" tabindex="0" aria-label="ゲーム一覧（横にスクロールできます）">
+          <li class="card-row-msg">読み込み中...</li>
         </ul>
+        <div class="wrap games-more">
+          <a class="community-btn" href="games/">すべてのゲームを見る →</a>
+        </div>
       </section>
 
       <section class="ranking wrap" aria-label="総合ランキング">
@@ -236,6 +209,19 @@
           grid.innerHTML = '<p class="board-msg">みんなの作品を読み込めませんでした。</p>';
         }
       })();
+    </script>
+    <script type="module">
+      // ゲームのカード: 台帳（assets/games.json）の pickup: true を、最大 TOP_GAMES 件。最後に「すべてのゲーム」のカード（スマホの横スクロールの終わり。PC は下のボタンだけ）
+      import { loadGames, gameCard } from "./assets/games.js?v=20261114";
+      const TOP_GAMES = 5; // PC は5枚で1列（main.css の修正B）
+      const row = document.getElementById("game-row");
+      loadGames()
+        .then(({ games }) => {
+          const pick = games.filter((g) => g.pickup).slice(0, TOP_GAMES);
+          row.innerHTML = pick.map((g) => `<li>${gameCard(g)}</li>`).join("")
+            + `<li class="all-li"><a class="game-card all-card" href="games/"><span class="all-count">${games.length}</span><span class="all-label">すべての<br />ゲームを見る →</span></a></li>`;
+        })
+        .catch((e) => { console.error(e); row.innerHTML = '<li class="card-row-msg"><a href="games/">ゲームの一覧を見る →</a></li>'; });
     </script>
     <script type="module">
       // 総合ランキング（sakuya-kit）。読み込めなかったときはメッセージだけ出す。
