@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>すべてのゲーム ─ naoblock GAMES</title>
+    <meta name="description" content="naoblock GAMES のゲーム一覧。ジャンルやキャラで探せます。登録不要・スマホですぐ遊べます。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="すべてのゲーム ─ naoblock GAMES" />
+    <meta property="og:description" content="naoblock GAMES のゲーム一覧。ジャンルやキャラで探せます。登録不要・スマホですぐ遊べます。" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:url" content="https://naoblock.com/games/" />
+    <link rel="canonical" href="https://naoblock.com/games/">
+    <meta property="og:image" content="https://naoblock.com/assets/ogp.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/main.css?v=20261114" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="../" aria-label="naoblock トップ">
+          <svg class="brand-mark" viewBox="0 0 16 6" shape-rendering="crispEdges" aria-hidden="true">
+            <rect x="3" y="0" width="6" height="1" fill="#F3322C" />
+            <rect x="10" y="0" width="6" height="1" fill="#F3322C" />
+            <rect x="3" y="5" width="6" height="1" fill="#F3322C" />
+            <rect x="10" y="5" width="6" height="1" fill="#F3322C" />
+            <rect x="3" y="1" width="1" height="4" fill="#F3322C" />
+            <rect x="8" y="1" width="1" height="4" fill="#F3322C" />
+            <rect x="10" y="1" width="1" height="4" fill="#F3322C" />
+            <rect x="15" y="1" width="1" height="4" fill="#F3322C" />
+            <rect x="9" y="2" width="1" height="1" fill="#F3322C" />
+            <rect x="0" y="2" width="3" height="1" fill="#F3322C" />
+            <rect x="0" y="3" width="1" height="2" fill="#F3322C" />
+            <rect x="4" y="1" width="2" height="4" fill="#fff" />
+            <rect x="11" y="1" width="2" height="4" fill="#fff" />
+            <rect x="6" y="1" width="2" height="4" fill="#000" />
+            <rect x="13" y="1" width="2" height="4" fill="#000" />
+          </svg>
+          <span class="brand-text">
+            <span class="brand-name">naoblock <span class="brand-official">Official Site</span></span>
+            <span class="brand-sub">⌐◨-◨ naoblock GAMES &amp; ナノブロック</span>
+          </span>
+        </a>
+        <!-- 右側は空けておく（次の改修で総合1位などを表示） -->
+        <div class="header-side"></div>
+      </div>
+    </header>
+
+
+    <main>
+      <section class="games-page wrap" aria-labelledby="games-title">
+        <h1 class="section-title" id="games-title"><span class="en">naoblock GAMES</span></h1>
+        <p class="games-lead">すべてのゲーム。登録不要・スマホですぐ遊べます</p>
+
+        <div class="games-tools" role="search">
+          <div class="tool-row">
+            <input class="games-search" id="q" type="search" placeholder="ゲームの名前で探す" aria-label="ゲームの名前で探す" />
+            <select class="games-sort" id="sort" aria-label="並び順">
+              <option value="pick">おすすめ順</option>
+              <option value="new">新しい順</option>
+              <option value="old">古い順</option>
+              <option value="name">名前順</option>
+            </select>
+          </div>
+          <div id="chips"></div>
+        </div>
+
+        <p class="games-count" id="count" aria-live="polite"></p>
+        <ul class="game-grid" id="grid"><li class="games-empty">読み込み中...</li></ul>
+
+        <div class="community-btns">
+          <a class="community-btn" href="../ranking/">総合ランキングを見る</a>
+          <a class="community-btn" href="../">トップへ戻る</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p><a href="../archive/ninket2026/">アーカイブ: にんケット2026</a></p>
+        <p>NounsDaoJapan BlockArtWorkTM ⌐◨-◨</p>
+        <p class="disclaimer"><strong>注意：</strong>このサイトで紹介するブロックアート作品は個人制作による非公式のファンメイド作品です。株式会社カワダ様の公式商品・公認商品ではありません。</p>
+      </div>
+    </footer>
+
+    <script type="module">
+      // ゲームの台帳（../assets/games.json）を、検索・ジャンル／キャラ・並び順で絞って並べる。
+      // 絞り込みは URL（?q=&genre=&chara=&sort=）にも残すので、そのまま共有できる
+      import { loadGames, gameCard } from "../assets/games.js?v=20261114";
+      const $ = (id) => document.getElementById(id);
+      const grid = $("grid"), chips = $("chips"), count = $("count"), q = $("q"), sort = $("sort");
+      const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+      const params = new URLSearchParams(location.search);
+      const state = { q: params.get("q") || "", sort: params.get("sort") || "pick", tags: {} };
+      let data = null;
+
+      function render() {
+        const words = state.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+        let list = data.games.filter((g) => {
+          for (const grp of data.groups) { const t = state.tags[grp.id]; if (t && !(g.tags || []).includes(t)) return false; }
+          const hay = [g.title, g.desc || "", ...(g.tags || [])].join(" ").toLowerCase();
+          return words.every((w) => hay.includes(w));
+        });
+        if (state.sort === "new") list = list.slice().sort((a, b) => (b.released || "").localeCompare(a.released || ""));
+        if (state.sort === "old") list = list.slice().sort((a, b) => (a.released || "").localeCompare(b.released || ""));
+        if (state.sort === "name") list = list.slice().sort((a, b) => a.title.localeCompare(b.title, "ja"));
+        count.textContent = list.length === data.games.length ? `${data.games.length} タイトル` : `${list.length} / ${data.games.length} タイトル`;
+        grid.innerHTML = list.length
+          ? list.map((g) => `<li>${gameCard(g, { detail: true })}</li>`).join("")
+          : '<li class="games-empty">見つかりませんでした。条件をゆるめてみてください。</li>';
+        // ボタンの押された状態
+        chips.querySelectorAll(".chip").forEach((b) => b.setAttribute("aria-pressed", String((state.tags[b.dataset.g] || "") === b.dataset.t)));
+        // URL に残す
+        const p = new URLSearchParams();
+        if (state.q) p.set("q", state.q);
+        for (const grp of data.groups) if (state.tags[grp.id]) p.set(grp.id, state.tags[grp.id]);
+        if (state.sort !== "pick") p.set("sort", state.sort);
+        history.replaceState(null, "", p.toString() ? `?${p}` : location.pathname);
+      }
+
+      loadGames("../")
+        .then((d) => {
+          data = d;
+          for (const grp of d.groups) { const t = params.get(grp.id); if (t && grp.tags.includes(t)) state.tags[grp.id] = t; }
+          // ジャンル・キャラのボタン（それぞれ1つだけ選べる。「すべて」で外す）。数は台帳から数える
+          chips.innerHTML = d.groups.map((grp) => {
+            const n = (t) => d.games.filter((g) => (g.tags || []).includes(t)).length;
+            return `<div class="tool-row"><span class="tool-label">${esc(grp.label)}</span>`
+              + `<button type="button" class="chip" data-g="${esc(grp.id)}" data-t="">すべて</button>`
+              + grp.tags.filter((t) => n(t) > 0).map((t) => `<button type="button" class="chip" data-g="${esc(grp.id)}" data-t="${esc(t)}">${esc(t)}<small>${n(t)}</small></button>`).join("")
+              + `</div>`;
+          }).join("");
+          q.value = state.q; sort.value = ["pick", "new", "old", "name"].includes(state.sort) ? state.sort : "pick"; state.sort = sort.value;
+          render();
+        })
+        .catch((e) => { console.error(e); grid.innerHTML = '<li class="games-empty">ゲームの一覧を読み込めませんでした。</li>'; });
+
+      chips.addEventListener("click", (e) => {
+        const b = e.target.closest(".chip"); if (!b) return;
+        state.tags[b.dataset.g] = b.dataset.t; render();
+      });
+      q.addEventListener("input", () => { state.q = q.value; render(); });
+      sort.addEventListener("change", () => { state.sort = sort.value; render(); });
+    </script>
+  </body>
+</html>

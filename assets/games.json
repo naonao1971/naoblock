@@ -1,0 +1,39 @@
+{
+  "_説明": "ゲームの台帳。トップページ（pickup: true のもの）と /games/ の一覧がこのファイルを読む。新しいゲームは games の先頭に1件足す。tags はジャンルとキャラ（groups の順に並べる）。color は red / blue / yellow / green。badge は NEW / UPDATE など（無ければ省く）。thumb を省くと url の ogp.png を使う",
+  "groups": [
+    { "id": "genre", "label": "ジャンル", "tags": ["シューティング", "アクション", "迷路"] },
+    { "id": "chara", "label": "キャラ", "tags": ["CNP", "Nouns", "忍者"] }
+  ],
+  "games": [
+    {
+      "id": "invaders", "title": "咲耶インベーダー", "url": "https://invaders.naoblock.com/", "color": "red",
+      "released": "2026-10-06", "badge": "NEW", "pickup": true,
+      "tags": ["シューティング", "CNP"],
+      "desc": "インベーダーにさらわれた CNP 11体を、UFO を撃ち落として救い出せ！ 長押しレーザーで編隊をまとめて撃ち抜く"
+    },
+    {
+      "id": "dig", "title": "咲耶ディグ", "url": "https://dig.naoblock.com/", "color": "blue",
+      "released": "2026-09-27", "pickup": true,
+      "tags": ["アクション", "CNP", "忍者"],
+      "desc": "城下町の地下を掘り進め、忍具と落石で忍者や妖怪をかわしながら、埋まった CNP 11体を掘り出して地上へ"
+    },
+    {
+      "id": "jumpbug", "title": "咲耶ジャンプバグ", "url": "https://jumpbug.naoblock.com/", "color": "yellow",
+      "released": "2026-09-26", "pickup": true,
+      "tags": ["アクション", "CNP", "Nouns"],
+      "desc": "⌐◨-◨カーで跳ねながら城下町・洞窟・天守を抜け、CNP 11体を拾ってゴールの鳥居を目指す横スクロール"
+    },
+    {
+      "id": "rally", "title": "咲耶Nounラリー", "url": "https://rally.naoblock.com/", "color": "green",
+      "released": "2026-09-21", "pickup": true,
+      "tags": ["迷路", "CNP", "Nouns"],
+      "desc": "迷路に散らばった CNP 11体を集めて出口へ戻る。通った跡が得点になる"
+    },
+    {
+      "id": "scramble", "title": "咲耶スクランブル", "url": "https://sakuya.naoblock.com/", "color": "red",
+      "released": "2026-07-26", "pickup": true,
+      "tags": ["シューティング", "CNP", "Nouns"],
+      "desc": "クリプト忍者咲耶の宇宙船で洞窟を駆け抜け、散らばった CNP 11体を救出する"
+    }
+  ]
+}
