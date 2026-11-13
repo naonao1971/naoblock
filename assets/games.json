@@ -1,10 +1,16 @@
 {
-  "_説明": "ゲームの台帳。トップページ（pickup: true のもの）と /games/ の一覧がこのファイルを読む。新しいゲームは games の先頭に1件足す。tags はジャンルとキャラ（groups の順に並べる）。color は red / blue / yellow / green。badge は NEW / UPDATE など（無ければ省く）。thumb を省くと url の ogp.png を使う",
+  "_説明": "ゲームの台帳。トップページ（pickup: true のもの）と /games/ の一覧がこのファイルを読む。新しいゲームは games の先頭に1件足す。tags はジャンルとキャラ（groups の順に並べる）。color は red / blue / yellow / green。badge は NEW / UPDATE など（無ければ省く）。line: true は公式LINEの友だち限定（先行公開）で、カードに「LINE先行」の印が付く（ゲーム側は naoblock.com/line/gate.js を読み込む）。thumb を省くと url の ogp.png を使う",
   "groups": [
-    { "id": "genre", "label": "ジャンル", "tags": ["シューティング", "アクション", "迷路"] },
+    { "id": "genre", "label": "ジャンル", "tags": ["シューティング", "アクション", "迷路", "スポーツ"] },
     { "id": "chara", "label": "キャラ", "tags": ["CNP", "Nouns", "忍者"] }
   ],
   "games": [
+    {
+      "id": "football", "title": "咲耶フットボール", "url": "https://sakuyafootball.naoblock.com/", "color": "green",
+      "released": "2026-11-13", "line": true, "pickup": true,
+      "tags": ["スポーツ", "CNP", "忍者"],
+      "desc": "CNP チームを操って、クリプト忍者チームと3分間戦う見下ろし型サッカー。審判はちび咲耶。いまは公式LINEの友だちだけ先行で遊べます"
+    },
     {
       "id": "invaders", "title": "咲耶インベーダー", "url": "https://invaders.naoblock.com/", "color": "red",
       "released": "2026-10-06", "badge": "NEW", "pickup": true,
